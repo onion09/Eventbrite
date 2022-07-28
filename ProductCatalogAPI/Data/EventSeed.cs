@@ -18,5 +18,21 @@ namespace EventCatalogAPI.Data
                 new EventLocation{City="Bellevue"},
             };
         }
+
+        private static IEnumerable<EventCatagory> GetEventCatagories()
+        {
+            return new List<EventCatagory>
+            {
+                new EventCatagory{ Category = "Food"},
+                new EventCatagory{ Category = "Health"},
+                new EventCatagory{ Category = "Music"},
+                new EventCatagory{ Category = "Travel"},
+                new EventCatagory{ Category = "Sports"},
+                new EventCatagory{ Category = "Hobbies"},
+                new EventCatagory{ Category = "Arts"},
+                new EventCatagory{ Category = "Business"},
+                new EventCatagory{ Category = "Family"}
+            };
+        }
     }
 }
