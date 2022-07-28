@@ -10,16 +10,12 @@ namespace EventCatalogAPI.Data
         {
             return new List<EventLocation>
             {
-                new EventLocation{City="Woodinville", ZipCode=98072},
-                new EventLocation{City="Bellingham", ZipCode=98226},
-                new EventLocation{City="Seattle", ZipCode=98103},
-                new EventLocation{City="Renton", ZipCode=98056},
-                new EventLocation{City="Issaquah", ZipCode=98029},
-                new EventLocation{City="Seattle", ZipCode=98108},
-                new EventLocation{City="Bellevue", ZipCode=98004},
-                new EventLocation{City="Seattle", ZipCode=98121},
-                new EventLocation{City="Seattle", ZipCode=98117}
-
+                new EventLocation{City="Woodinville"},
+                new EventLocation{City="Bellingham"},
+                new EventLocation{City="Seattle"},
+                new EventLocation{City="Renton"},
+                new EventLocation{City="Issaquah"},
+                new EventLocation{City="Bellevue"},
             };
         }
     }
