@@ -1,10 +1,21 @@
 ﻿using EventCatalogAPI.Domain;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace EventCatalogAPI.Data
 {
     public class EventSeed
     {
+        public static void Seed(EventContext context)
+        {
+            context.Database.Migrate();
+            if (!context.EventLocations.Any())
+            {
+                context.EventLocations.AddRange(GetEventLocations());
+                context.SaveChanges();
+            }
+        }
 
         private static IEnumerable<EventLocation> GetEventLocations()
         {
