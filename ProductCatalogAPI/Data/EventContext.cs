@@ -11,7 +11,8 @@ namespace EventCatalogAPI.Data
         }
 
         public DbSet<EventLocation> EventLocations { get; set; }
-
+        public DbSet<EventCatagory> EventCatagories { get; set; }
+        public DbSet<EventItem> EventItems { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<EventLocation>(e =>
@@ -22,6 +23,17 @@ namespace EventCatalogAPI.Data
 
 
                 e.Property(t => t.City)
+                .IsRequired()
+                .HasMaxLength(100);
+            });
+
+            modelBuilder.Entity<EventCatagory>(e =>
+            {
+                e.Property(t => t.Id)
+                .IsRequired()
+                .ValueGeneratedOnAdd();
+
+                e.Property(t => t.Category)
                 .IsRequired()
                 .HasMaxLength(100);
             });
