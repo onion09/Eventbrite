@@ -25,7 +25,38 @@ namespace EventCatalogAPI.Data
                 .IsRequired()
                 .HasMaxLength(100);
             });
-          
+
+            modelBuilder.Entity<EventItem>(e =>
+            {
+                e.Property(t => t.Id)
+                .IsRequired()
+                .ValueGeneratedOnAdd();
+
+                e.Property(t => t.Name)
+                 .IsRequired()
+                .HasMaxLength(100);
+
+                e.Property(t => t.Price)
+                 .IsRequired();
+
+                e.Property(t => t.EventDate)
+                 .IsRequired();
+
+                e.Property(t => t.Address)
+                 .IsRequired();
+
+                e.Property(t => t.Organizer)
+                .IsRequired();
+
+                e.HasOne(t => t.EventCatagory)
+                   .WithMany()
+                   .HasForeignKey(t => t.EventCatagoryId);
+
+                   e.HasOne(t => t.EventLocation)
+                   .WithMany()
+                   .HasForeignKey(t => t.EventLocationId);
+            });
+
         }
     }
 }
