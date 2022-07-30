@@ -114,8 +114,7 @@ namespace EventCatalogAPI.Data
 
              new EventItem{EventCatagoryId = 9, EventLocationId =5, Description = "The JBF Issaquah Pop-up consignment shop is BACK! Come check out our great selection and deals on our PRESALE DAY!",
                 Name = "PRESALE | Huge Kids Consignment Pop-Up Shop!", Price = 30, PictureURL = "http://externalcatalogbaseurltobereplaced/api/pic/27",
-                EventDate = new System.DateTime(2022, 10, 05), Address = "1730 10th Ave NW", Organizer = "JBF Seattle East/Issaquah"}
-
+                EventDate = new System.DateTime(2022, 10, 05), Address = "1730 10th Ave NW", Organizer = "JBF Seattle East/Issaquah"},
 
             new EventItem{EventCatagoryId = 6, EventLocationId =1, Description = "Paint on a hanging wood plaque!", Name = "Dahlias on Wood", Price = 45, PictureURL = "http://externalcatalogbaseurltobereplaced/api/pic/10",EventDate = new System.DateTime(2022, 08, 23), Address = "13590 NE Village Square Dr #1035, Woodinville, WA 98072", Organizer = "Corks and Canvas Events"},
             new EventItem{EventCatagoryId = 6, EventLocationId =2, Description = "Monthly meeting for Amateur Radio (HAM) enthusiasts ", Name = "Amateur Radio Group Meetup", Price = 0, PictureURL = "http://externalcatalogbaseurltobereplaced/api/pic/11",EventDate = new System.DateTime(2022, 07, 30), Address = "1 Bellis Fair Parkway, Bellingham, WA 98226", Organizer = "Bellingham Makerspace"},
