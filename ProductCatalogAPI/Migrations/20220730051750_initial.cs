@@ -3,23 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EventCatalogAPI.Migrations
 {
-    public partial class addcatagory : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_eventLocations",
-                table: "eventLocations");
-
-            migrationBuilder.RenameTable(
-                name: "eventLocations",
-                newName: "EventLocations");
-
-            migrationBuilder.AddPrimaryKey(
-                name: "PK_EventLocations",
-                table: "EventLocations",
-                column: "Id");
-
             migrationBuilder.CreateTable(
                 name: "EventCatagories",
                 columns: table => new
@@ -31,6 +18,19 @@ namespace EventCatalogAPI.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_EventCatagories", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EventLocations",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    City = table.Column<string>(maxLength: 100, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EventLocations", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -85,18 +85,8 @@ namespace EventCatalogAPI.Migrations
             migrationBuilder.DropTable(
                 name: "EventCatagories");
 
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_EventLocations",
-                table: "EventLocations");
-
-            migrationBuilder.RenameTable(
-                name: "EventLocations",
-                newName: "eventLocations");
-
-            migrationBuilder.AddPrimaryKey(
-                name: "PK_eventLocations",
-                table: "eventLocations",
-                column: "Id");
+            migrationBuilder.DropTable(
+                name: "EventLocations");
         }
     }
 }
