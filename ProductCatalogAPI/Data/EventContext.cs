@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EventCatalogAPI.Data
 {
-    public class EventContext:DbContext
+    public class EventContext : DbContext
     {
-        public EventContext(DbContextOptions options): base(options)
+        public EventContext(DbContextOptions options) : base(options)
         {
 
         }
@@ -64,9 +64,9 @@ namespace EventCatalogAPI.Data
                    .WithMany()
                    .HasForeignKey(t => t.EventCatagoryId);
 
-                   e.HasOne(t => t.EventLocation)
-                   .WithMany()
-                   .HasForeignKey(t => t.EventLocationId);
+                e.HasOne(t => t.EventLocation)
+                .WithMany()
+                .HasForeignKey(t => t.EventLocationId);
             });
 
         }

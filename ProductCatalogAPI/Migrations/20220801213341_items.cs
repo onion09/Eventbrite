@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EventCatalogAPI.Migrations
 {
-    public partial class initial : Migration
+    public partial class items : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
