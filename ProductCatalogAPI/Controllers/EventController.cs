@@ -39,7 +39,7 @@ namespace EventCatalogAPI.Controllers
         }
 
         [HttpGet("[action]")]
-        public async Task<IActionResult> EventItems(
+        public async Task<IActionResult> Items(
             [FromQuery]int pageIndex = 0,
             [FromQuery]int pageSize = 6)
         {
@@ -52,6 +52,37 @@ namespace EventCatalogAPI.Controllers
             items = ChangePictureUrl(items);
 
             var model = new PaginatedItemViewModel()
+            {
+                PageIndex = pageIndex,
+                PageSize = items.Count,
+                Count = itemsCount,
+                Data = items
+            };
+            return Ok(model);
+        }
+
+        [HttpGet("[action]/filter")]
+        public async Task<IActionResult> Items(
+            [FromQuery] int? eventCatagoryId,
+            [FromQuery] int? eventLocationId,
+            [FromQuery] int pageIndex = 0,
+            [FromQuery] int pageSize = 6)
+        {
+            var query = (IQueryable<EventItem>)_context.EventItems;
+            if (eventCatagoryId.HasValue)
+            {
+                query = query.Where(c => c.EventCatagoryId == eventCatagoryId.Value);
+            }
+            if (eventLocationId.HasValue)
+            {
+                query = query.Where(c => c.EventLocationId == eventLocationId.Value);
+            }
+            var itemsCount = await query.LongCountAsync();
+            var items = await query.OrderBy(c => c.Name).Skip(pageSize * pageIndex)
+                .Take(pageSize).ToListAsync();
+
+            items = ChangePictureUrl(items);
+            var model = new PaginatedItemViewModel
             {
                 PageIndex = pageIndex,
                 PageSize = items.Count,

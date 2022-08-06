@@ -30,6 +30,13 @@ namespace ProductCatalogAPI
             services.AddControllers();
             services.AddDbContext<EventContext>(options =>
             options.UseSqlServer(Configuration["ConnectionString"]));
+            services.AddSwaggerGen(options =>
+            options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+            {
+                Title = "EventOnContainers - Event Catalog API",
+                Version = "v1",
+                Description = "Event Catalog Microservice"
+            }));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,6 +52,10 @@ namespace ProductCatalogAPI
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseSwagger().UseSwaggerUI(options =>
+            {
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "EventCatalogAPI V1");
+            });
 
             app.UseEndpoints(endpoints =>
             {
