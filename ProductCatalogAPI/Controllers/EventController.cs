@@ -43,7 +43,7 @@ namespace EventCatalogAPI.Controllers
             [FromQuery]int pageIndex = 0,
             [FromQuery]int pageSize = 6)
         {
-            var itemsCount = _context.EventItems.LongCountAsync();
+            var itemsCount = await _context.EventItems.LongCountAsync();
             var items = await _context.EventItems
                 .OrderBy(c => c.Name)
                 .Skip(pageIndex * pageSize)
@@ -55,7 +55,7 @@ namespace EventCatalogAPI.Controllers
             {
                 PageIndex = pageIndex,
                 PageSize = items.Count,
-                Count = itemsCount.Result,
+                Count = itemsCount,
                 Data = items
             };
             return Ok(model);
@@ -77,7 +77,7 @@ namespace EventCatalogAPI.Controllers
             {
                 query = query.Where(c => c.EventLocationId == eventLocationId.Value);
             }
-            var itemsCount = query.LongCountAsync();
+            var itemsCount = await query.LongCountAsync();
             var items = await query.OrderBy(c => c.Name).Skip(pageSize * pageIndex)
                 .Take(pageSize).ToListAsync();
 
@@ -86,7 +86,7 @@ namespace EventCatalogAPI.Controllers
             {
                 PageIndex = pageIndex,
                 PageSize = items.Count,
-                Count = itemsCount.Result,
+                Count = itemsCount,
                 Data = items
             };
             return Ok(model);

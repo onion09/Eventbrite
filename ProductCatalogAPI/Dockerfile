@@ -7,16 +7,15 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
 WORKDIR /src
-COPY ["ProductCatalogAPI/ProductCatalogAPI.csproj", "ProductCatalogAPI/"]
-RUN dotnet restore "ProductCatalogAPI/ProductCatalogAPI.csproj"
 COPY . .
-WORKDIR "/src/ProductCatalogAPI"
-RUN dotnet build "ProductCatalogAPI.csproj" -c Release -o /app/build
+RUN dotnet restore "EventCatalogAPI.csproj"
+
+RUN dotnet build "EventCatalogAPI.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "ProductCatalogAPI.csproj" -c Release -o /app/publish
+RUN dotnet publish "EventCatalogAPI.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "ProductCatalogAPI.dll"]
+ENTRYPOINT ["dotnet", "EventCatalogAPI.dll"]
