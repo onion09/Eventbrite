@@ -1,15 +1,17 @@
-﻿
-using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using WebMvc.Models;
 using WebMvc.Services;
 using WebMvc.ViewModels;
-using WebMVC.Services;
 
 namespace WebMvc.Controllers
 {
     public class EventController : Controller
     {
+
         private readonly EventService _service;
 
         public EventController(EventService service)
@@ -21,6 +23,7 @@ namespace WebMvc.Controllers
         {
             var itemsonPage = 10;
             var item = await _service.GetEventItemsAsync(page ?? 0, itemsonPage, categoryfilterapplied, locationfilterapplied, eventDate);
+
 
             var vm = new EventIndexViewModel
             {
