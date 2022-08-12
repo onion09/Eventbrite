@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,15 +11,19 @@ namespace WebMvc.Controllers
 {
     public class EventController : Controller
     {
-        private readonly IEventService _service;
-        public EventController(IEventService service)
+
+        private readonly EventService _service;
+
+        public EventController(EventService service)
         {
             _service = service;
         }
-        public async Task<IActionResult> Index(int? page, int? categoryfilterapplied, int? locationfilterapplied)
+
+        public async Task<IActionResult> Index(int? page, int? categoryfilterapplied, int? locationfilterapplied, DateTime eventDate)
         {
             var itemsonPage = 10;
-            var item = await _service.GetEventItemsAsync(page ?? 0, itemsonPage, categoryfilterapplied, locationfilterapplied);
+            var item = await _service.GetEventItemsAsync(page ?? 0, itemsonPage, categoryfilterapplied, locationfilterapplied, eventDate);
+
 
             var vm = new EventIndexViewModel
             {
