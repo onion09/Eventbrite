@@ -7,11 +7,10 @@ using WebMvc.Models;
 
 namespace WebMvc.Services
 {
-    interface IEventService
+    public interface IEventService
     {
 
-        Task<Event> GetEventItemsAsync(int page, int size, int? catagory, int? location, DateTime? eventDate);
-
+        Task<Event> GetEventItemsAsync(int page, int size, int? catagory, int? location);
         Task<IEnumerable<SelectListItem>> GetLocationsAsync();
         Task<IEnumerable<SelectListItem>> GetCategoriesAsync();
     }

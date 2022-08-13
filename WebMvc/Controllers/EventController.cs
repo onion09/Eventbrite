@@ -7,14 +7,13 @@ using WebMvc.Models;
 using WebMvc.Services;
 using WebMvc.ViewModels;
 
+
 namespace WebMvc.Controllers
 {
     public class EventController : Controller
     {
-
-        private readonly EventService _service;
-
-        public EventController(EventService service)
+        private readonly IEventService _service;
+        public EventController(IEventService service)
         {
             _service = service;
         }
@@ -22,7 +21,7 @@ namespace WebMvc.Controllers
         public async Task<IActionResult> Index(int? page, int? categoryfilterapplied, int? locationfilterapplied, DateTime eventDate)
         {
             var itemsonPage = 10;
-            var item = await _service.GetEventItemsAsync(page ?? 0, itemsonPage, categoryfilterapplied, locationfilterapplied, eventDate);
+            var item = await _service.GetEventItemsAsync(page ?? 0, itemsonPage, categoryfilterapplied, locationfilterapplied);
 
 
             var vm = new EventIndexViewModel

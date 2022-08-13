@@ -1,7 +1,7 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace WebMVC.Infrastructure
+namespace WebMvc.Infrastructure
 {
     public interface IHttpClient
     {

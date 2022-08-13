@@ -7,9 +7,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using WebMvc.Models;
 using WebMvc.Services;
-using WebMVC.Infrastructure;
+using WebMvc.Infrastructure;
 
-namespace WebMVC.Services
+namespace WebMvc.Services
 {
     public class EventService : IEventService
     {
@@ -17,11 +17,9 @@ namespace WebMVC.Services
         private readonly IHttpClient _client;
         public EventService(IConfiguration config, IHttpClient client)
         {
-            _baseUrl = $"{config["EventUrl"]}/api/eventcatalog";
+            _baseUrl = $"{config["EventUrl"]}/api/event";
             _client = client;
         }
-
-
 
         public async Task<IEnumerable<SelectListItem>> GetCategoriesAsync()
         {
@@ -46,9 +44,9 @@ namespace WebMVC.Services
             return items;
         }
 
-        public async Task<Event> GetEventItemsAsync(int page, int size, int? catagory, int? location, DateTime? eventDate)
+        public async Task<Event> GetEventItemsAsync(int page, int size, int? catagory, int? location)
         {
-            var eventItemsUri = APIPaths.GetUrl.GetAllEventItems(_baseUrl, page, size, catagory, location, eventDate);
+            var eventItemsUri = APIPaths.GetUrl.GetAllEventItems(_baseUrl, page, size, catagory, location);
             var dataString = await _client.GetStringAsync(eventItemsUri);
             return JsonConvert.DeserializeObject<Event>(dataString);
         }

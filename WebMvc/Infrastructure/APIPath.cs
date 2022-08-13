@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WebMVC.Infrastructure
+namespace WebMvc.Infrastructure
 {
     public static class APIPaths
     {
@@ -15,7 +15,7 @@ namespace WebMVC.Infrastructure
                 return $"{baseUri}/eventLocations";
             }
             public static string GetAllEventItems(string baseUri,
-                int page, int take, int? catagory, int? location, DateTime? eventDate)
+                int page, int take, int? catagory, int? location)
             {
                 var preUri = string.Empty;
                 var filterQs = string.Empty;
@@ -28,11 +28,11 @@ namespace WebMVC.Infrastructure
                     filterQs = (filterQs == string.Empty) ? $"eventLocationId={location.Value}" :
                         $"{filterQs}&eventLocationId={location.Value}";
                 }
-                if (eventDate.HasValue)
+               /* if (eventDate.HasValue)
                 {
                     filterQs = (filterQs == string.Empty) ? $"eventDate={eventDate.Value}" :
                         $"{filterQs}&eventDate={eventDate.Value}";
-                }
+                }*/
                 if (string.IsNullOrEmpty(filterQs))
                 {
                     preUri = $"{baseUri}/items?pageIndex={page}&pageSize={take}";
