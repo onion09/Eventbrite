@@ -79,7 +79,7 @@ namespace EventCatalogAPI.Controllers
                 query = query.Where(c => c.EventLocationId == eventLocationId.Value);
             }
 
-            if (eventDate != string.Empty)
+            if (eventDate != null)
             {
                 query = query.Where(c => c.EventDate == DateTime.Parse(eventDate));
             }

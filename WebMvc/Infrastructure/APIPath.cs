@@ -29,7 +29,7 @@ namespace WebMvc.Infrastructure
                     filterQs = (filterQs == string.Empty) ? $"eventLocationId={location.Value}" :
                         $"{filterQs}&eventLocationId={location.Value}";
                 }
-               if (eventDate != string.Empty)
+               if (eventDate != null)
                 {
                     filterQs = (filterQs == string.Empty) ? $"eventDate={eventDate}" :
                         $"{filterQs}&eventDate={eventDate}";
