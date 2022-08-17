@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebMvc.Models;
 using WebMvc.Services;
@@ -42,6 +43,12 @@ namespace WebMvc.Controllers
             };
 
             return View(vm);
+        }
+
+        [Authorize]
+        public IActionResult About()
+        {
+            return View();
         }
     }
 }

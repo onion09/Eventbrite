@@ -15,6 +15,17 @@ services:
     container_name: eventsqlserver
     networks:
       - backend
+ 
+  tokensqlserver:
+    image: "mcr.microsoft.com/mssql/server"
+    environment:
+      ACCEPT_EULA: Y
+      SA_PASSWORD: ProductApi(!)
+    ports:
+      - "1448:1443"
+    container_name: eventtokensqlserver
+    networks:
+      - backend
 
   catalog:
     image: events/catalogapi
@@ -41,12 +52,34 @@ services:
       dockerfile: Dockerfile
     environment:
       EventUrl: http://catalog
+      IdentityUrl: http://192.168.0.20:7800
+      CallBackUrl: http://localhost:7500
     ports:
       - "7500:80"
     networks:
         - frontend
     depends_on:
       - catalog
+      - tokenserver
+
+  tokenserver:
+    image: events/tokenapi
+    build:
+      context: .\TokenServiceAPI
+      dockerfile: Dockerfile
+    environment:
+      ConnectionString: "Data Source=tokensqlserver;Initial Catalog=TokenServiceDb;User Id=sa;Password=ProductApi(!);Connect Timeout=30;"
+      MvcClient: http://localhost:7500
+    ports:
+      - "7800:80"
+    container_name: eventtokenapi
+
+    networks:
+      - frontend
+      - backend
+    depends_on:
+      - tokensqlserver
+
 
       
 

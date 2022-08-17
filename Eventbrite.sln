@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32630.194
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C9872707-3393-4EC6-902C-0FC4BC6D8775}"
 EndProject
@@ -13,7 +13,9 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-co
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "web", "web", "{D7E40F89-CCCE-4D89-B3BB-518C28949BC6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMvc", "WebMvc\WebMvc.csproj", "{D2773157-92A5-4B83-8B06-C7C600FCB667}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebMvc", "WebMvc\WebMvc.csproj", "{D2773157-92A5-4B83-8B06-C7C600FCB667}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TokenServiceAPI", "TokenServiceAPI\TokenServiceAPI.csproj", "{67CF4C0E-B5B0-4BC2-BCA6-3A510A7EAD69}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{D2773157-92A5-4B83-8B06-C7C600FCB667}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2773157-92A5-4B83-8B06-C7C600FCB667}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2773157-92A5-4B83-8B06-C7C600FCB667}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67CF4C0E-B5B0-4BC2-BCA6-3A510A7EAD69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67CF4C0E-B5B0-4BC2-BCA6-3A510A7EAD69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67CF4C0E-B5B0-4BC2-BCA6-3A510A7EAD69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67CF4C0E-B5B0-4BC2-BCA6-3A510A7EAD69}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -42,6 +48,7 @@ Global
 		{4A35C1A7-6007-43AE-BC32-85C3E63717EB} = {9800447B-353A-4543-B1A9-CBE8EFC75921}
 		{D7E40F89-CCCE-4D89-B3BB-518C28949BC6} = {C9872707-3393-4EC6-902C-0FC4BC6D8775}
 		{D2773157-92A5-4B83-8B06-C7C600FCB667} = {D7E40F89-CCCE-4D89-B3BB-518C28949BC6}
+		{67CF4C0E-B5B0-4BC2-BCA6-3A510A7EAD69} = {9800447B-353A-4543-B1A9-CBE8EFC75921}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B6B86C83-994C-42C2-A206-F50F7124E530}
