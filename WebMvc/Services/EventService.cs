@@ -44,9 +44,9 @@ namespace WebMvc.Services
             return items;
         }
 
-        public async Task<Event> GetEventItemsAsync(int page, int size, int? catagory, int? location)
+        public async Task<Event> GetEventItemsAsync(int page, int size, int? catagory, int? location,string? eventDate)
         {
-            var eventItemsUri = APIPaths.GetUrl.GetAllEventItems(_baseUrl, page, size, catagory, location);
+            var eventItemsUri = APIPaths.GetUrl.GetAllEventItems(_baseUrl, page, size, catagory, location, eventDate);
             var dataString = await _client.GetStringAsync(eventItemsUri);
             return JsonConvert.DeserializeObject<Event>(dataString);
         }
@@ -71,6 +71,22 @@ namespace WebMvc.Services
                     Text = item.Value<string>("city")
                 });
             }
+            return items;
+        }
+
+        public IEnumerable<SelectListItem>  GetDatesAsync()
+        {
+            var items = new List<SelectListItem>
+            {
+                new SelectListItem
+                {
+                    Value = null, Text = "All", Selected=true
+                },
+              new SelectListItem
+                {
+                    Value = DateTime.Today.ToString(), Text = "Today"
+                }
+            };
             return items;
         }
     }

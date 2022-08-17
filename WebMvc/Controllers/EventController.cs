@@ -18,16 +18,17 @@ namespace WebMvc.Controllers
             _service = service;
         }
 
-        public async Task<IActionResult> Index(int? page, int? categoryfilterapplied, int? locationfilterapplied, DateTime eventDate)
+        public async Task<IActionResult> Index(int? page, int? categoryfilterapplied, int? locationfilterapplied, string? eventDate)
         {
             var itemsonPage = 10;
-            var item = await _service.GetEventItemsAsync(page ?? 0, itemsonPage, categoryfilterapplied, locationfilterapplied);
+            var item = await _service.GetEventItemsAsync(page ?? 0, itemsonPage, categoryfilterapplied, locationfilterapplied, eventDate);
 
 
             var vm = new EventIndexViewModel
             {
                 Categories = await _service.GetCategoriesAsync(),
                 Locations = await _service.GetLocationsAsync(),
+                Dates =  _service.GetDatesAsync(),
 
                 EventItems = item.Data,
                 PaginationInfo = new PaginationInfo
@@ -38,7 +39,8 @@ namespace WebMvc.Controllers
                     TotalPages = (int)Math.Ceiling((decimal)item.Count / itemsonPage)
                 },
                 CategoryFilterApplied = categoryfilterapplied,
-                LocationFilterApplied = locationfilterapplied
+                LocationFilterApplied = locationfilterapplied,
+                DateFilterApplied = eventDate
             };
 
             return View(vm);
