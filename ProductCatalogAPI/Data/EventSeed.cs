@@ -67,7 +67,7 @@ namespace EventCatalogAPI.Data
 
              new EventItem{EventCatagoryId = 1, EventLocationId =6, Description = "", Name = " Classic Handmade Ravioli ", Price = 100, PictureURL = "http://externalcatalogbaseurltobereplaced/api/Pic/3", EventDate = new System.DateTime(2022, 08 , 30), Address = "The Bistro @ SpringHill Suites Seattle Downtown", Organizer = "RemondEvents"},
 
-             new EventItem{EventCatagoryId = 2, EventLocationId =3, Description = "A gentle yoga practice open to everyone in the soaring sacred space of the cathedral nave", Name = "Cathedral Yoga at Saint Marks", Price = 150, PictureURL = "http://exter/api/pic/4", EventDate = new System.DateTime(2022, 08 , 27), Address = "Saint Mark's Episcopal Cathedral", Organizer = "SeattleEvents"},
+             new EventItem{EventCatagoryId = 2, EventLocationId =3, Description = "A gentle yoga practice open to everyone in the soaring sacred space of the cathedral nave", Name = "Cathedral Yoga at Saint Marks", Price = 150, PictureURL = "http://externalcatalogbaseurltobereplaced/api/Pic/4", EventDate = new System.DateTime(2022, 08 , 27), Address = "Saint Mark's Episcopal Cathedral", Organizer = "SeattleEvents"},
 
              new EventItem{EventCatagoryId = 2, EventLocationId =7, Description = "Joy Of Breathing Free Class", Name = "Pranayama ", Price = 0, PictureURL = "http://externalcatalogbaseurltobereplaced/api/Pic/5", EventDate = new System.DateTime(2022, 08 , 31), Address = "MaryMoor Park", Organizer = "RemondEvents"},
 
