@@ -11,7 +11,7 @@ namespace WebMvc.ViewModels
     {
         public IEnumerable<SelectListItem> Locations { get; set; }
         public IEnumerable<SelectListItem> Categories { get; set; }
-
+        public IEnumerable<SelectListItem> Dates { get; set; }
         public IEnumerable<EventItem> EvenetItems { get; set; }
 
         public PaginationInfo PaginationInfo { get; set; }
@@ -20,7 +20,7 @@ namespace WebMvc.ViewModels
 
         public int? LocationFilterApplied { get; set; }
 
-        public int? DateFilterApplied { get; set; }
+        public string? DateFilterApplied { get; set; }
         public IEnumerable<EventItem> EventItems { get; internal set; }
     }
 }

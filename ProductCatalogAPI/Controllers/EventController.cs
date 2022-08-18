@@ -65,7 +65,7 @@ namespace EventCatalogAPI.Controllers
         public async Task<IActionResult> Items(
             [FromQuery] int? eventCatagoryId,
             [FromQuery] int? eventLocationId,
-            [FromQuery] DateTime? eventDate,
+            [FromQuery] string? eventDate,
             [FromQuery] int pageIndex = 0,
             [FromQuery] int pageSize = 6)
         {
@@ -79,9 +79,9 @@ namespace EventCatalogAPI.Controllers
                 query = query.Where(c => c.EventLocationId == eventLocationId.Value);
             }
 
-            if (eventDate.HasValue)
+            if (eventDate != null)
             {
-                query = query.Where(c => c.EventDate == eventDate.Value);
+                query = query.Where(c => c.EventDate == DateTime.Parse(eventDate));
             }
             var itemsCount = await query.LongCountAsync();
             var items = await query.OrderBy(c => c.Name).Skip(pageSize * pageIndex)
