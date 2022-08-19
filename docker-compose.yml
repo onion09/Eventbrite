@@ -52,7 +52,7 @@ services:
       dockerfile: Dockerfile
     environment:
       EventUrl: http://catalog
-      IdentityUrl: http://192.168.0.20:7800
+      IdentityUrl: http://192.168.1.18:7800
       CallBackUrl: http://localhost:7500
     ports:
       - "7500:80"
