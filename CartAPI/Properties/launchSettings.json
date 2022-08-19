@@ -4,8 +4,8 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:10930",
-      "sslPort": 44315
+      "applicationUrl": "http://localhost:44107",
+      "sslPort": 44366
     }
   },
   "profiles": {
@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "ProductCatalogAPI": {
+    "CartAPI": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "weatherforecast",
@@ -29,7 +29,7 @@
     "Docker": {
       "commandName": "Docker",
       "launchBrowser": true,
-      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/Event",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/Cart",
       "publishAllPorts": true,
       "useSSL": true
     }
