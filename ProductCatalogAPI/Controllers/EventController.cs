@@ -39,6 +39,13 @@ namespace EventCatalogAPI.Controllers
         }
 
         [HttpGet("[action]")]
+        public async Task<IActionResult> EventWeekdays()
+        {
+            var weekdays = await _context.EventWeekdays.ToListAsync();
+            return Ok(weekdays);
+        }
+
+        [HttpGet("[action]")]
         public async Task<IActionResult> Items(
             [FromQuery]int pageIndex = 0,
             [FromQuery]int pageSize = 6)
@@ -65,7 +72,7 @@ namespace EventCatalogAPI.Controllers
         public async Task<IActionResult> Items(
             [FromQuery] int? eventCatagoryId,
             [FromQuery] int? eventLocationId,
-            [FromQuery] string? eventDate,
+            [FromQuery] int? eventDate,
             [FromQuery] int pageIndex = 0,
             [FromQuery] int pageSize = 6)
         {
@@ -79,9 +86,9 @@ namespace EventCatalogAPI.Controllers
                 query = query.Where(c => c.EventLocationId == eventLocationId.Value);
             }
 
-            if (eventDate != null)
+            if (eventDate.HasValue)
             {
-                query = query.Where(c => c.EventDate == DateTime.Parse(eventDate));
+                query = query.Where(c => c.EventWeekdayId == eventDate.Value);
             }
             var itemsCount = await query.LongCountAsync();
             var items = await query.OrderBy(c => c.Name).Skip(pageSize * pageIndex)

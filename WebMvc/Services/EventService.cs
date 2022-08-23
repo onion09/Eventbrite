@@ -44,7 +44,7 @@ namespace WebMvc.Services
             return items;
         }
 
-        public async Task<Event> GetEventItemsAsync(int page, int size, int? catagory, int? location,string? eventDate)
+        public async Task<Event> GetEventItemsAsync(int page, int size, int? catagory, int? location,int? eventDate)
         {
             var eventItemsUri = APIPaths.GetUrl.GetAllEventItems(_baseUrl, page, size, catagory, location, eventDate);
             var dataString = await _client.GetStringAsync(eventItemsUri);
@@ -74,19 +74,27 @@ namespace WebMvc.Services
             return items;
         }
 
-        public IEnumerable<SelectListItem>  GetDatesAsync()
+
+        public async Task<IEnumerable<SelectListItem>> GetEventWeekdaysAsync()
         {
+            var weekdayUri = APIPaths.GetUrl.GetAllWeekdays(_baseUrl);
+            var dataString = await _client.GetStringAsync(weekdayUri);
             var items = new List<SelectListItem>
             {
                 new SelectListItem
                 {
                     Value = null, Text = "All", Selected=true
-                },
-              new SelectListItem
-                {
-                    Value = DateTime.Today.ToString(), Text = "Today"
                 }
             };
+            var weedays = JArray.Parse(dataString);
+            foreach (var item in weedays)
+            {
+                items.Add(new SelectListItem
+                {
+                    Value = item.Value<string>("id"),
+                    Text = item.Value<string>("weekday")
+                });
+            }
             return items;
         }
     }

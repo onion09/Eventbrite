@@ -19,7 +19,7 @@ namespace WebMvc.Controllers
             _service = service;
         }
 
-        public async Task<IActionResult> Index(int? page, int? categoryfilterapplied, int? locationfilterapplied, string? eventDate)
+        public async Task<IActionResult> Index(int? page, int? categoryfilterapplied, int? locationfilterapplied, int? eventDate)
         {
             var itemsonPage = 10;
             var item = await _service.GetEventItemsAsync(page ?? 0, itemsonPage, categoryfilterapplied, locationfilterapplied, eventDate);
@@ -29,7 +29,7 @@ namespace WebMvc.Controllers
             {
                 Categories = await _service.GetCategoriesAsync(),
                 Locations = await _service.GetLocationsAsync(),
-                Dates =  _service.GetDatesAsync(),
+                Dates =  await _service.GetEventWeekdaysAsync(),
 
                 EventItems = item.Data,
                 PaginationInfo = new PaginationInfo

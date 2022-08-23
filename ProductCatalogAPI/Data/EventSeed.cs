@@ -1,5 +1,6 @@
 ﻿using EventCatalogAPI.Domain;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -20,11 +21,17 @@ namespace EventCatalogAPI.Data
                 context.EventCatagories.AddRange(GetEventCatagories());
                 context.SaveChanges();
             }
+            if (!context.EventWeekdays.Any())
+            {
+                context.EventWeekdays.AddRange(GetEvenWeekDays());
+                context.SaveChanges();
+            }
             if (!context.EventItems.Any())
             {
                 context.EventItems.AddRange(GetEventItems());
                 context.SaveChanges();
             }
+
         }
 
         private static IEnumerable<EventLocation> GetEventLocations()
@@ -57,9 +64,24 @@ namespace EventCatalogAPI.Data
             };
         }
 
+        private static IEnumerable<EventWeekDay> GetEvenWeekDays()
+        {
+            var eventWeekdays = new List<EventWeekDay>
+            {
+                new EventWeekDay{ WeekDay = "Monday"},
+                new EventWeekDay{ WeekDay = "Tuesday"},
+                new EventWeekDay{ WeekDay = "Wednesday"},
+                new EventWeekDay{ WeekDay = "Thursday"},
+                new EventWeekDay{ WeekDay = "Friday"},
+                new EventWeekDay{ WeekDay = "Saturday"},
+                new EventWeekDay{ WeekDay = "Sunday"},
+            };
+            return eventWeekdays;
+        }
+
         private static IEnumerable<EventItem> GetEventItems()
         {
-            return new List<EventItem>
+            var eventItems =  new List<EventItem>
             {
              new EventItem{EventCatagoryId = 1, EventLocationId =7, Description = "All-You-Can-Eat Ice Cream Festival", Name = "IceCream Feast", Price = 50, PictureURL = "http://externalcatalogbaseurltobereplaced/api/Pic/1", EventDate = new System.DateTime(2022, 08 , 27), Address = "Onyx, 156th Ave", Organizer = "RemondEvents"},
 
@@ -126,6 +148,20 @@ namespace EventCatalogAPI.Data
             new EventItem{EventCatagoryId = 4, EventLocationId =3, Description = "Your insider’s guide to the Emerald City.", Name = "Seattle 101", Price = 0, PictureURL = "http://externalcatalogbaseurltobereplaced/api/Pic/17",EventDate = new System.DateTime(2022, 08, 30), Address = "2001 Western Avenue, Seattle, WA 98121", Organizer = "Seattle Free Walking Tours"},
             new EventItem{EventCatagoryId = 4, EventLocationId =3, Description = "Sit back and relax or participate as much as you like as one of our skippers takes you for an evening sail", Name = "TGIF Sunset Cruises", Price = 225, PictureURL = "http://externalcatalogbaseurltobereplaced/api/Pic/18",EventDate = new System.DateTime(2022, 08, 28), Address = "7001 Seaview Ave NW, Seattle,WA", Organizer = "Windworks Sailing & Pownerboating Club"}
             };
+
+            foreach(EventItem i in eventItems)
+            {
+                i.EventWeekdayId = GetWeekDays(i.EventDate);
+            }
+            return eventItems;
+        }
+
+        public static int GetWeekDays(DateTime dateTime)
+        {  
+            var weekDays = (int)dateTime.DayOfWeek;
+            if (weekDays == 0)
+                return 7;
+            return weekDays;
         }
     }
 }

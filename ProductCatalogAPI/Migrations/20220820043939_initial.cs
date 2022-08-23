@@ -34,6 +34,19 @@ namespace EventCatalogAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "EventWeekdays",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    WeekDay = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EventWeekdays", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "EventItems",
                 columns: table => new
                 {
@@ -47,7 +60,8 @@ namespace EventCatalogAPI.Migrations
                     Organizer = table.Column<string>(nullable: false),
                     Address = table.Column<string>(nullable: false),
                     EventCatagoryId = table.Column<int>(nullable: false),
-                    EventLocationId = table.Column<int>(nullable: false)
+                    EventLocationId = table.Column<int>(nullable: false),
+                    EventWeekdayId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -64,6 +78,12 @@ namespace EventCatalogAPI.Migrations
                         principalTable: "EventLocations",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_EventItems_EventWeekdays_EventWeekdayId",
+                        column: x => x.EventWeekdayId,
+                        principalTable: "EventWeekdays",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -75,6 +95,11 @@ namespace EventCatalogAPI.Migrations
                 name: "IX_EventItems_EventLocationId",
                 table: "EventItems",
                 column: "EventLocationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EventItems_EventWeekdayId",
+                table: "EventItems",
+                column: "EventWeekdayId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -87,6 +112,9 @@ namespace EventCatalogAPI.Migrations
 
             migrationBuilder.DropTable(
                 name: "EventLocations");
+
+            migrationBuilder.DropTable(
+                name: "EventWeekdays");
         }
     }
 }

@@ -10,9 +10,10 @@ namespace WebMvc.Services
     public interface IEventService
     {
 
-        Task<Event> GetEventItemsAsync(int page, int size, int? catagory, int? location, string? eventDate);
+        Task<Event> GetEventItemsAsync(int page, int size, int? catagory, int? location, int? eventDate);
         Task<IEnumerable<SelectListItem>> GetLocationsAsync();
         Task<IEnumerable<SelectListItem>> GetCategoriesAsync();
-        IEnumerable<SelectListItem> GetDatesAsync();
+
+        Task<IEnumerable<SelectListItem>> GetEventWeekdaysAsync();
     }
 }

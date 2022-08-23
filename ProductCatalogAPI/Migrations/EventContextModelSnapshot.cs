@@ -59,6 +59,9 @@ namespace EventCatalogAPI.Migrations
                     b.Property<int>("EventLocationId")
                         .HasColumnType("int");
 
+                    b.Property<int>("EventWeekdayId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)")
@@ -80,6 +83,8 @@ namespace EventCatalogAPI.Migrations
 
                     b.HasIndex("EventLocationId");
 
+                    b.HasIndex("EventWeekdayId");
+
                     b.ToTable("EventItems");
                 });
 
@@ -100,6 +105,22 @@ namespace EventCatalogAPI.Migrations
                     b.ToTable("EventLocations");
                 });
 
+            modelBuilder.Entity("EventCatalogAPI.Domain.EventWeekDay", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("WeekDay")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EventWeekdays");
+                });
+
             modelBuilder.Entity("EventCatalogAPI.Domain.EventItem", b =>
                 {
                     b.HasOne("EventCatalogAPI.Domain.EventCatagory", "EventCatagory")
@@ -111,6 +132,12 @@ namespace EventCatalogAPI.Migrations
                     b.HasOne("EventCatalogAPI.Domain.EventLocation", "EventLocation")
                         .WithMany()
                         .HasForeignKey("EventLocationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EventCatalogAPI.Domain.EventWeekDay", "EventWeekday")
+                        .WithMany()
+                        .HasForeignKey("EventWeekdayId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

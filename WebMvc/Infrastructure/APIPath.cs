@@ -14,9 +14,14 @@ namespace WebMvc.Infrastructure
             {
                 return $"{baseUri}/eventLocations";
             }
+            public static string GetAllWeekdays(string baseUri)
+            {
+                return $"{baseUri}/eventWeekdays";
+            }
+
 
             public static string GetAllEventItems(string baseUri,
-                int page, int take, int? catagory, int? location, string? eventDate)
+                int page, int take, int? catagory, int? location, int? eventDate)
             {
                 var preUri = string.Empty;
                 var filterQs = string.Empty;
@@ -29,10 +34,10 @@ namespace WebMvc.Infrastructure
                     filterQs = (filterQs == string.Empty) ? $"eventLocationId={location.Value}" :
                         $"{filterQs}&eventLocationId={location.Value}";
                 }
-               if (eventDate != null)
+               if (eventDate.HasValue)
                 {
-                    filterQs = (filterQs == string.Empty) ? $"eventDate={eventDate}" :
-                        $"{filterQs}&eventDate={eventDate}";
+                    filterQs = (filterQs == string.Empty) ? $"eventWeekdayId={eventDate.Value}" :
+                        $"{filterQs}&eventWeekdayId={eventDate.Value}";
                 }
                 if (string.IsNullOrEmpty(filterQs))
                 {

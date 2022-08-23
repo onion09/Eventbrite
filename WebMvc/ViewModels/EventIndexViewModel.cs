@@ -20,7 +20,7 @@ namespace WebMvc.ViewModels
 
         public int? LocationFilterApplied { get; set; }
 
-        public string? DateFilterApplied { get; set; }
+        public int? DateFilterApplied { get; set; }
         public IEnumerable<EventItem> EventItems { get; internal set; }
     }
 }

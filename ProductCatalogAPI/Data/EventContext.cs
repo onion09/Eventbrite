@@ -13,6 +13,7 @@ namespace EventCatalogAPI.Data
         public DbSet<EventLocation> EventLocations { get; set; }
         public DbSet<EventCatagory> EventCatagories { get; set; }
         public DbSet<EventItem> EventItems { get; set; }
+        public DbSet<EventWeekDay> EventWeekdays { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<EventLocation>(e =>
@@ -38,6 +39,14 @@ namespace EventCatalogAPI.Data
                 .HasMaxLength(100);
             });
 
+            modelBuilder.Entity<EventWeekDay>(e =>
+            {
+                e.Property(t => t.Id)
+                .IsRequired();
+
+                e.Property(t => t.WeekDay)
+                .IsRequired();
+            });
             modelBuilder.Entity<EventItem>(e =>
             {
                 e.Property(t => t.Id)
@@ -64,9 +73,13 @@ namespace EventCatalogAPI.Data
                    .WithMany()
                    .HasForeignKey(t => t.EventCatagoryId);
 
-                   e.HasOne(t => t.EventLocation)
+                e.HasOne(t => t.EventLocation)
                    .WithMany()
                    .HasForeignKey(t => t.EventLocationId);
+
+                e.HasOne(t => t.EventWeekday)
+                    .WithMany()
+                    .HasForeignKey(t => t.EventWeekdayId);
             });
 
         }

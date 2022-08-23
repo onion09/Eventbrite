@@ -17,8 +17,12 @@ namespace WebMvc.Models
         public string Address { get; set; }
         public int EventCatagoryId { get; set; }
         public int EventLocationId { get; set; }
+        public int EventWeekdayId { get; set; }
+
 
         public string EventCatagory { get; set; }
         public string EventLocation { get; set; }
+        public string EventWeekday { get; set; }
+        
     }
 }

@@ -17,8 +17,10 @@ namespace EventCatalogAPI.Domain
         public string Address { get; set; }
         public int EventCatagoryId { get; set; }
         public int EventLocationId { get; set; }
+        public int EventWeekdayId { get; set; }
 
         public virtual EventCatagory EventCatagory { get; set; }
         public virtual EventLocation EventLocation { get; set; }
+        public virtual EventWeekDay EventWeekday { get; set; }
     }
 }

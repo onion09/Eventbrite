@@ -53,6 +53,7 @@
             <label class="esh-catalog-label" data-title="Category">
                 <select asp-for="@Model.CategoryFilterApplied" asp-items="@Model.Categories" class="esh-catalog-filter"></select>
             </label>
+
             <label class="esh-catalog-label" data-title="Location">
                 <select asp-for="@Model.LocationFilterApplied" asp-items="@Model.Locations" class="esh-catalog-filter"></select>
             </label>
@@ -60,6 +61,7 @@
             <label class="esh-catalog-label" data-title="Dates">
                 <select asp-for="@Model.DateFilterApplied" asp-items="@Model.Dates" class="esh-catalog-filter"></select>
             </label>
+
             <input class="esh-catalog-send" type="image" src="~/images/arrow-right.svg" />
         </form>
     </div>
