@@ -46,4 +46,23 @@ namespace WebMvc.Infrastructure
             }
         }
     }
+
+    public static class Basket
+    {
+        public static string GetBasket(string baseUrl, string basketId)
+        {
+            return $"{baseUrl}/{basketId}";
+        }
+
+        public static string UpdateBasket(string baseUrl)
+        {
+            return baseUrl;
+        }
+
+        public static string CleanBasket(string baseUrl, string basketId)
+        {
+            return $"{baseUrl}/{basketId}";
+        }
+    }
+
 }
