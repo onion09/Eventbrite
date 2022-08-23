@@ -27,6 +27,14 @@ services:
     networks:
       - backend
 
+  basket.data:
+    image: redis
+    ports:
+      - "7050:6369"
+    container_name: basketdata
+    networks:
+      - backend
+ 
   catalog:
     image: events/catalogapi
     build:
@@ -79,6 +87,25 @@ services:
       - backend
     depends_on:
       - tokensqlserver
+
+  cart:
+    image: events/cartapi
+    build:
+      context: .\CartAPI
+      dockerfile: Dockerfile
+    environment:
+      ASP.NETCORE_ENVIRONMENT: Development
+      IdentityUrl: http://192.168.1.18:7800
+      ConnectionString: basket.data
+    ports:
+      - "7010:80"
+    container_name: eventscartapi
+    networks:
+      - frontend
+      - backend
+    depends_on:
+      - tokenserver
+      - basket.data
 
 
       
