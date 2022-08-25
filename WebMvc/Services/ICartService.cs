@@ -1,6 +1,8 @@
+
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using System.Threading.Tasks;
 using WebMvc.Models;
 using WebMvc.Models.CartModels;
@@ -11,6 +13,7 @@ namespace WebMvc.Services
     {
         Task<Cart> GetCart(ApplicationUser user);
 
+
         Task AddItemToCart(ApplicationUser user, CartItem product);
 
         Task<Cart> UpdateCart(Cart cart);
@@ -20,3 +23,4 @@ namespace WebMvc.Services
         Task ClearCart(ApplicationUser user);
     }
 }
+

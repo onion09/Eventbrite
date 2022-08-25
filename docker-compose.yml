@@ -60,7 +60,8 @@ services:
       dockerfile: Dockerfile
     environment:
       EventUrl: http://catalog
-      IdentityUrl: http://192.168.1.18:7800
+      CartUrl: http://cart
+      IdentityUrl: http://192.168.0.20:7800
       CallBackUrl: http://localhost:7500
     ports:
       - "7500:80"
@@ -69,6 +70,7 @@ services:
     depends_on:
       - catalog
       - tokenserver
+      - cart
 
   tokenserver:
     image: events/tokenapi
@@ -95,7 +97,7 @@ services:
       dockerfile: Dockerfile
     environment:
       ASP.NETCORE_ENVIRONMENT: Development
-      IdentityUrl: http://192.168.1.18:7800
+      IdentityUrl: http://192.168.0.20:7800
       ConnectionString: basket.data
     ports:
       - "7010:80"

@@ -1,4 +1,5 @@
-﻿using System;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -6,6 +7,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
+
 using WebMvc.Infrastructure;
 using WebMvc.Models;
 using WebMvc.Models.CartModels;
@@ -17,6 +19,7 @@ namespace WebMvc.Services
         private readonly string _baseUrl;
         private readonly IConfiguration _config;
         private readonly IHttpClient _apiClient;
+
         private readonly IHttpContextAccessor _httpContextAccessor;
 
         public CartService(IConfiguration config, IHttpClient apiClient, IHttpContextAccessor httpContextAccessor)
@@ -49,8 +52,10 @@ namespace WebMvc.Services
             }
             else
             {
+
                 basketitem.Quantity++;
             }
+
 
             await UpdateCart(cart);
         }
@@ -59,6 +64,7 @@ namespace WebMvc.Services
         {
             var token = await GetUserTokenAsync();
             var cleanBasketUri = APIPaths.Basket.CleanBasket(_baseUrl, user.Email);
+
             await _apiClient.DeleteAsync(cleanBasketUri, token);        
         }
 
@@ -75,10 +81,12 @@ namespace WebMvc.Services
                 };
             return response;
 
+
         }
 
         public async Task<Cart> SetQuantities(ApplicationUser user, Dictionary<string, int> quantities)
         {
+
             var basket = await GetCart(user);
             basket.Items.ForEach(x =>
             {
@@ -89,6 +97,7 @@ namespace WebMvc.Services
             });
             return basket;
         }
+
 
         public async Task<Cart> UpdateCart(Cart cart)
         {
@@ -101,4 +110,6 @@ namespace WebMvc.Services
             return cart;
         }
     }
+
 }
+

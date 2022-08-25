@@ -35,6 +35,7 @@ namespace WebMvc
             services.AddTransient<IEventService, EventService>();
             services.AddTransient<IIdentityService<ApplicationUser>, IdentityService>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddTransient<ICartService, CartService>();
 
             var identityUrl = Configuration.GetValue<string>("IdentityUrl");
             var callBackUrl = Configuration.GetValue<string>("CallBackUrl");

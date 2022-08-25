@@ -45,6 +45,7 @@ namespace WebMvc.Infrastructure
                 return preUri;
             }
         }
+
         public static class Basket
         {
             public static string GetBasket(string baseUrl, string basketId)
