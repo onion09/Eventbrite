@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Threading.Tasks;
 namespace WebMvc.Models.CartModels
 {
     public class Cart
@@ -14,4 +14,6 @@ namespace WebMvc.Models.CartModels
             return Math.Round(Items.Sum(x => x.UnitPrice * x.Quantity), 2);
         }
     }
+
 }
+

@@ -9,7 +9,7 @@ namespace WebMvc.Infrastructure
             public static string GetAllCatagories(string baseUri)
             {
                 return $"{baseUri}/eventCategories";
-            }            
+            }
             public static string GetAllLocations(string baseUri)
             {
                 return $"{baseUri}/eventLocations";
@@ -29,7 +29,7 @@ namespace WebMvc.Infrastructure
                     filterQs = (filterQs == string.Empty) ? $"eventLocationId={location.Value}" :
                         $"{filterQs}&eventLocationId={location.Value}";
                 }
-               if (eventDate != null)
+                if (eventDate != null)
                 {
                     filterQs = (filterQs == string.Empty) ? $"eventDate={eventDate}" :
                         $"{filterQs}&eventDate={eventDate}";
