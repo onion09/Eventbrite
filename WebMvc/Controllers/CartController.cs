@@ -67,10 +67,10 @@ namespace WebMvc.Controllers
                     {
                         Id = Guid.NewGuid().ToString(),
                         Quantity = 1,
-                        ProductName = productDetails.Name,
+                        EventName = productDetails.Name,
                         PictureUrl = productDetails.PictureURL,
                         UnitPrice = productDetails.Price,
-                        ProductId = productDetails.Id.ToString()
+                        EventId = productDetails.Id.ToString()
                     };
                     await _cartService.AddItemToCart(user, product);
                 }
