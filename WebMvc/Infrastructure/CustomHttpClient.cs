@@ -14,7 +14,7 @@ namespace WebMvc.Infrastructure
         {
             _httpClient = new HttpClient();
         }
-        public async Task<HttpResponseMessage> DeleteAsync<T>(string uri, 
+        public async Task<HttpResponseMessage> DeleteAsync(string uri, 
             string authorizationToken = null, string authorizationMethod = "Bearer")
         {
             var requestMessage = new HttpRequestMessage(HttpMethod.Delete, uri);
