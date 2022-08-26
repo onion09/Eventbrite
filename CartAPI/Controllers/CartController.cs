@@ -1,53 +1,4 @@
-﻿
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-using CartAPI.Data;
+﻿using CartAPI.Data;
 using CartAPI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -76,6 +27,8 @@ namespace CartAPI.Controllers
             return Ok(basket);
         }
         [HttpPost]
+        [ProducesResponseType(typeof(Cart), (int)HttpStatusCode.OK)]
+
         public async Task<ActionResult> Post([FromBody]Cart basket)
         {
             var updatedBasket = await _reporsitory.UpdateCartAsync(basket);

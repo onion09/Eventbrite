@@ -71,6 +71,7 @@ namespace WebMvc.Services
         public async Task<Cart> GetCart(ApplicationUser user)
         {
             var token = await GetUserTokenAsync();
+            //user.Email = "me@myemail.com";
             var getBasketUri = APIPaths.Basket.GetBasket(_baseUrl, user.Email);
             var dataString = await _apiClient.GetStringAsync(getBasketUri, token);
 
