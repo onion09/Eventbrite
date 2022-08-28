@@ -7,7 +7,7 @@ namespace CartAPI.Models
         public string BuyerId { get; set; }
         public List<CartItem> items { get; set; }
 
-        public Cart(string cartId, List<CartItem> items)
+        public Cart(string cartId)
         {
             BuyerId = cartId;
             items = new List<CartItem>();

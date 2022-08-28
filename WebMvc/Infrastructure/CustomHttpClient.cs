@@ -63,7 +63,7 @@ namespace WebMvc.Infrastructure
             }
             var requestMessage = new HttpRequestMessage(method, uri);
             requestMessage.Content = new StringContent(JsonConvert.SerializeObject(item),
-                System.Text.Encoding.UTF8, "application/Json");
+                System.Text.Encoding.UTF8, "application/json");
             if(authorizationToken != null)
             {
                 requestMessage.Headers.Authorization = new AuthenticationHeaderValue(authorizationMethod,
