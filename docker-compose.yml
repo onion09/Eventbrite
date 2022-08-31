@@ -34,6 +34,17 @@ services:
     container_name: basketdata
     networks:
       - backend
+
+  ordersqlserver:
+    image: "mcr.microsoft.com/mssql/server"
+    environment:
+      ACCEPT_EULA: Y
+      SA_PASSWORD: ProductApi(!)
+    ports:
+      - "1450:1443"
+    container_name: eventordersqlserver
+    networks:
+      - backend
  
   catalog:
     image: events/catalogapi
@@ -61,7 +72,7 @@ services:
     environment:
       EventUrl: http://catalog
       CartUrl: http://cart
-      IdentityUrl: http://10.0.0.24:7800
+      IdentityUrl: http://192.168.1.21:7800
       CallBackUrl: http://localhost:7500
     ports:
       - "7500:80"
@@ -97,7 +108,7 @@ services:
       dockerfile: Dockerfile
     environment:
       ASP.NETCORE_ENVIRONMENT: Development
-      IdentityUrl: http://10.0.0.24:7800
+      IdentityUrl: http://192.168.1.21:7800
       ConnectionString: basket.data
     ports:
       - "7010:80"
@@ -109,6 +120,31 @@ services:
       - tokenserver
       - basket.data
 
-
+  order:
+    image: events/orderapi
+    build:
+      context: .\orderapi
+      dockerfile: Dockerfile
+    logging:
+      driver: "json-file"
+      options: {
+        max-size: "200k",
+        max-file: "10"
+      }
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      IdentityUrl: http://192.168.1.21:7800
+      ConnectionString: "Data Source=ordersqlserver;Initial Catalog=OrdersDb;User Id=sa;Password=ProductApi(!);Connect Timeout=30;"
+    ports:
+      - "7020:80"
+    container_name: eventsorderapi
+    networks:
+      - frontend
+      - backend
+    dependson:
+      - tokensqlserver
+      - ordersqlserver
+     
+      
       
 

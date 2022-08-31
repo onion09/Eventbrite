@@ -7,16 +7,15 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
 WORKDIR /src
-COPY ["OrderApi/OrderApi.csproj", "OrderApi/"]
-RUN dotnet restore "OrderApi/OrderApi.csproj"
 COPY . .
-WORKDIR "/src/OrderApi"
-RUN dotnet build "OrderApi.csproj" -c Release -o /app/build
+RUN dotnet restore "OrderAPI.csproj"
+
+RUN dotnet build "OrderAPI.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "OrderApi.csproj" -c Release -o /app/publish
+RUN dotnet publish "OrderAPI.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "OrderApi.dll"]
+ENTRYPOINT ["dotnet", "OrderAPI.dll"]
