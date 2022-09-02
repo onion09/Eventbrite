@@ -69,11 +69,21 @@ services:
     build:
       context: .\WebMvc
       dockerfile: Dockerfile
+    logging:
+      driver: "json-file"
+      options: {
+          max-size: "200k",
+          max-file: "10"
+      }    
     environment:
+      ASPNETCORE_ENVIRONMENT: Development
       EventUrl: http://catalog
       CartUrl: http://cart
       IdentityUrl: http://192.168.1.21:7800
       CallBackUrl: http://localhost:7500
+      OrderUrl: http://order
+      StripePublicKey: pk_test_51LdFCNL1UoLau7ZHpceQOVwMFigrbvPkfobO74efps1fScCHT18Fv4Gp08fuHdoIo4jczfMcXmROXLgIAgw636je00t8DBAuoW
+      StripePrivateKey: sk_test_51LdFCNL1UoLau7ZH2f9A25rQv0qNAd1yKN2MxsD01M3gXk3zQ98ezULmBIBLd2UzGV50lIAFcJvMQPdtGZ44ltZr00TuzQPrsL
     ports:
       - "7500:80"
     networks:
@@ -82,6 +92,7 @@ services:
       - catalog
       - tokenserver
       - cart
+      - order
 
   tokenserver:
     image: events/tokenapi
@@ -141,7 +152,7 @@ services:
     networks:
       - frontend
       - backend
-    dependson:
+    depends_on:
       - tokensqlserver
       - ordersqlserver
      
