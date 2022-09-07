@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Common.Messaging;
+using MassTransit;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -20,11 +22,13 @@ namespace OrderApi.Controllers
         private readonly OrdersContext _ordersContext;
         private readonly IConfiguration _config;
         private readonly ILogger<OrdersController> _logger;
-        public OrdersController(OrdersContext context, IConfiguration config, ILogger<OrdersController> logger)
+        private IPublishEndpoint _bus;
+        public OrdersController(OrdersContext context, IConfiguration config, ILogger<OrdersController> logger, IPublishEndpoint bus)
         {
             _ordersContext = context;
             _config = config;
             _logger = logger;
+            _bus = bus;
         }
 
         [HttpGet("id", Name = "[action]")]
@@ -65,6 +69,7 @@ namespace OrderApi.Controllers
             try
             {
                 await _ordersContext.SaveChangesAsync();
+                _bus.Publish(new OrderCompletedEvent(order.BuyerId)).Wait();
                 return Ok(new { order.OrderId });
             }
             catch(DbUpdateException ex)
