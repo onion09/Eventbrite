@@ -141,7 +141,7 @@ services:
     networks:
       - frontend
       - backend
-    dependson:
+    depends_on:
       - tokensqlserver
       - ordersqlserver
      
