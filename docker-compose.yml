@@ -82,8 +82,8 @@ services:
       IdentityUrl: http://192.168.1.21:7800
       CallBackUrl: http://localhost:7500
       OrderUrl: http://order
-      StripePublicKey: pk_test_51LdFCNL1UoLau7ZHpceQOVwMFigrbvPkfobO74efps1fScCHT18Fv4Gp08fuHdoIo4jczfMcXmROXLgIAgw636je00t8DBAuoW
-      StripePrivateKey: sk_test_51LdFCNL1UoLau7ZH2f9A25rQv0qNAd1yKN2MxsD01M3gXk3zQ98ezULmBIBLd2UzGV50lIAFcJvMQPdtGZ44ltZr00TuzQPrsL
+      StripePublicKey: pk_test_51LdLOQDXOuA56uv1GKJ3T4CxFWK0a2PQyc56WvFlISvtlqGDGufiwslEkktt7pyVI7u2Tf6YuQeYunFFnywlEC5P00ZsBVKnKz
+      StripePrivateKey: sk_test_51LdLOQDXOuA56uv16t7jAc29SMVgdZzWsIq4WPMwQmD8dmouP7eIv5IyWEB0sZB0a7SqUAGJx3evqJoMGubkTRMn00yVETWFWO
     ports:
       - "7500:80"
     networks:
@@ -156,6 +156,7 @@ services:
       - tokensqlserver
       - ordersqlserver
      
+
       
       
 
