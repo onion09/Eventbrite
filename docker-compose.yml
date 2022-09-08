@@ -95,8 +95,8 @@ services:
       IdentityUrl: http://192.168.1.115:7800
       CallBackUrl: http://localhost:7500
       OrderUrl: http://order
-      StripePublicKey: pk_test_51LdLOQDXOuA56uv1GKJ3T4CxFWK0a2PQyc56WvFlISvtlqGDGufiwslEkktt7pyVI7u2Tf6YuQeYunFFnywlEC5P00ZsBVKnKz
-      StripePrivateKey: sk_test_51LdLOQDXOuA56uv16t7jAc29SMVgdZzWsIq4WPMwQmD8dmouP7eIv5IyWEB0sZB0a7SqUAGJx3evqJoMGubkTRMn00yVETWFWO
+      StripePublicKey: pk_test_51LfciWAHqbeMKUc20hlX4v5Sa2aZvPSYHfFBRNvdSWsUGoA1wWez8VvjQLI9UnDDur6eu3RFrzGbwRSeUSyExyHi00zWDwTFZl
+      StripePrivateKey: sk_test_51LfciWAHqbeMKUc24AbJFHwRIp9v2BZfxggFksciKvJo67uwQ1se43SVDQM4MGkYhzYKfQXL4nm1Bko18z9X9YeB00MMkr2S3h
     ports:
       - "7500:80"
     networks:
@@ -167,7 +167,7 @@ services:
       - frontend
       - backend
     depends_on:
-      - tokensqlserver
+      - tokenserver
       - ordersqlserver
       - rabbitmq
      

@@ -22,6 +22,7 @@ namespace OrderApi
                 var context = serviceProviders.GetRequiredService<OrdersContext>();
                 MigrateDatabase.EnsureCreated(context);
             }
+            host.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

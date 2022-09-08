@@ -1,5 +1,5 @@
 using CartAPI.Data;
-using CartAPI.Messaging.Consumer;
+using CartAPI.Messaging.Consumers;
 using MassTransit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
