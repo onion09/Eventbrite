@@ -25,9 +25,10 @@
 
             <section class="esh-basket-title col-xs-3">Product</section>
             <section class="esh-basket-title col-xs-3 hidden-lg-down"></section>
+            <section class="esh-basket-title col-xs-1">Date</section>
             <section class="esh-basket-title col-xs-2">Price</section>
-            <section class="esh-basket-title col-xs-2">Quantity</section>
-            <section class="esh-basket-title col-xs-2">Cost</section>
+            <section class="esh-basket-title col-xs-1">Quantity</section>
+            <section class="esh-basket-title col-xs-1">Cost</section>
         </article>
 
         @for (int i = 0; i < Model.Items.Count; i++)
@@ -40,8 +41,9 @@
                         <img class="esh-basket-image" src="@item.PictureUrl" />
                     </section>
                     <section class="esh-basket-item esh-basket-item--middle col-xs-3">@item.EventName</section>
+                    <section class="esh-basket-item esh-basket-item--middle col-xs-1">@item.EventDate.ToString("MM-dd-yyyy")</section>
                     <section class="esh-basket-item esh-basket-item--middle col-xs-2">$ @item.UnitPrice.ToString("N2")</section>
-                    <section class="esh-basket-item esh-basket-item--middle col-xs-2">
+                    <section class="esh-basket-item esh-basket-item--middle col-xs-1">
                         <input type="hidden" name="@("quantities[" + i +"].Key")" value="@item.Id" />
                         <input type="number" class="esh-basket-input" min="1" name="@("quantities[" + i +"].Value")" value="@item.Quantity" />
                     </section>

@@ -4,7 +4,7 @@ using MassTransit;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 
-namespace CartAPI.Messaging.Consumer
+namespace CartAPI.Messaging.Consumers
 {
     public class OrderCompletedEventConsumer : IConsumer<OrderCompletedEvent>
     {

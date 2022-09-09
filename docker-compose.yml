@@ -92,7 +92,7 @@ services:
       ASPNETCORE_ENVIRONMENT: Development
       EventUrl: http://catalog
       CartUrl: http://cart
-      IdentityUrl: http://192.168.1.115:7800
+      IdentityUrl: http://192.168.1.21:7800
       CallBackUrl: http://localhost:7500
       OrderUrl: http://order
       StripePublicKey: pk_test_51LdLOQDXOuA56uv1GKJ3T4CxFWK0a2PQyc56WvFlISvtlqGDGufiwslEkktt7pyVI7u2Tf6YuQeYunFFnywlEC5P00ZsBVKnKz
@@ -132,7 +132,7 @@ services:
       dockerfile: Dockerfile
     environment:
       ASP.NETCORE_ENVIRONMENT: Development
-      IdentityUrl: http://192.168.1.115:7800
+      IdentityUrl: http://192.168.1.21:7800
       ConnectionString: basket.data
     ports:
       - "7010:80"
@@ -158,7 +158,7 @@ services:
       }
     environment:
       ASPNETCORE_ENVIRONMENT: Development
-      IdentityUrl: http://192.168.1.115:7800
+      IdentityUrl: http://192.168.1.21:7800
       ConnectionString: "Data Source=ordersqlserver;Initial Catalog=OrdersDb;User Id=sa;Password=ProductApi(!);Connect Timeout=30;"
     ports:
       - "7020:80"
@@ -167,11 +167,10 @@ services:
       - frontend
       - backend
     depends_on:
-      - tokensqlserver
+      - tokenserver
       - ordersqlserver
       - rabbitmq
      
-
       
       
 
