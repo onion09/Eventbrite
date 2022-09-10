@@ -41,7 +41,7 @@
                         <img class="esh-basket-image" src="@item.PictureUrl" />
                     </section>
                     <section class="esh-basket-item esh-basket-item--middle col-xs-3">@item.EventName</section>
-                    <section class="esh-basket-item esh-basket-item--middle col-xs-1">@item.EventDate.ToString("MM-dd-yyyy")</section>
+                    <section class="esh-basket-item esh-basket-item--middle col-xs-1">@item.EventDate.ToString("MM/dd/yyyy")</section>
                     <section class="esh-basket-item esh-basket-item--middle col-xs-2">$ @item.UnitPrice.ToString("N2")</section>
                     <section class="esh-basket-item esh-basket-item--middle col-xs-1">
                         <input type="hidden" name="@("quantities[" + i +"].Key")" value="@item.Id" />
