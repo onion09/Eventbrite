@@ -69,6 +69,7 @@ namespace WebMvc.Controllers
                         Quantity = 1,
                         EventName = productDetails.Name,
                         PictureUrl = productDetails.PictureURL,
+                        EventDate = productDetails.EventDate,
                         UnitPrice = productDetails.Price,
                         EventId = productDetails.Id.ToString()
                     };

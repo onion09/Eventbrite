@@ -65,7 +65,7 @@ namespace EventCatalogAPI.Data
 
              new EventItem{EventCatagoryId = 7, EventLocationId =3, Description = "Explore the evolution of coffee culture", Name = "Coffee Culture Tour", Price = 150, PictureURL = "http://externalcatalogbaseurltobereplaced/api/Pic/2", EventDate = new System.DateTime(2022, 08 , 28), Address = "Space Needele Near", Organizer = "SeattleEvents"},
 
-             new EventItem{EventCatagoryId = 7, EventLocationId =6, Description = "", Name = " Classic Handmade Ravioli ", Price = 100, PictureURL = "http://externalcatalogbaseurltobereplaced/api/Pic/3", EventDate = new System.DateTime(2022, 08 , 30), Address = "The Bistro @ SpringHill Suites Seattle Downtown", Organizer = "RemondEvents"},
+             new EventItem{EventCatagoryId = 7, EventLocationId =6, Description = "", Name = " Classic Handmade Ravioli ", Price = 100, PictureURL = "http://externalcatalogbaseurltobereplaced/api/Pic/3", EventDate = new System.DateTime(2022, 08, 30), Address = "The Bistro @ SpringHill Suites Seattle Downtown", Organizer = "RemondEvents"},
 
              new EventItem{EventCatagoryId = 6, EventLocationId =3, Description = "A gentle yoga practice open to everyone in the soaring sacred space of the cathedral nave", Name = "Cathedral Yoga at Saint Marks", Price = 150, PictureURL = "http://externalcatalogbaseurltobereplaced/api/Pic/4", EventDate = new System.DateTime(2022, 08 , 27), Address = "Saint Mark's Episcopal Cathedral", Organizer = "SeattleEvents"},
 

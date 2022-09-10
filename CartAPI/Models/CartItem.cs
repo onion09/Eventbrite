@@ -1,4 +1,6 @@
-﻿namespace CartAPI.Models
+﻿using System;
+
+namespace CartAPI.Models
 {
     public class CartItem
     {
@@ -9,5 +11,10 @@
         public decimal UnitPrice { get; set; }
         public int Quantity { get; set; }
         public decimal OldUnitPrice { get; set; }
+
+        public DateTime EventDate { get; set; }
+
+
     }
+
 }

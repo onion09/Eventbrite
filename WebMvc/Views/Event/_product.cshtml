@@ -9,6 +9,9 @@
     <div class="esh-catalog-name">
         <span>@Model.Name</span>
     </div>
+    @*<div class="esh-catalog-eventDate">
+        <span>@Model.EventDate.ToString("MM/dd/yyyy")</span>
+    </div>*@
     <div class="esh-catalog-price">
         <span>@Model.Price.ToString("N2")</span>
     </div>
@@ -21,4 +24,5 @@
     <input type="hidden" asp-for="@Model.Name" name="name" />
     <input type="hidden" asp-for="@Model.PictureURL" name="pictureUrl" />
     <input type="hidden" asp-for="@Model.Price" name="price" />
+    <input type="hidden" asp-for="@Model.EventDate" name="eventDate" />
 </form>
