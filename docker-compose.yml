@@ -6,23 +6,23 @@ networks:
 
 services:
   mssqlserver:
-    image: "mcr.microsoft.com/mssql/server"
+    image: "mcr.microsoft.com/mssql/server:latest"
     environment:
       ACCEPT_EULA: Y
       SA_PASSWORD: ProductApi(!)
     ports:
-      - "1449:1443"
+      - "1449:1433"
     container_name: eventsqlserver
     networks:
       - backend
  
   tokensqlserver:
-    image: "mcr.microsoft.com/mssql/server"
+    image: "mcr.microsoft.com/mssql/server:latest"
     environment:
       ACCEPT_EULA: Y
       SA_PASSWORD: ProductApi(!)
     ports:
-      - "1448:1443"
+      - "1448:1433"
     container_name: eventtokensqlserver
     networks:
       - backend
@@ -30,18 +30,18 @@ services:
   basket.data:
     image: redis
     ports:
-      - "7050:6369"
+      - "7050:6379"
     container_name: basketdata
     networks:
       - backend
 
   ordersqlserver:
-    image: "mcr.microsoft.com/mssql/server"
+    image: "mcr.microsoft.com/mssql/server:latest"
     environment:
       ACCEPT_EULA: Y
       SA_PASSWORD: ProductApi(!)
     ports:
-      - "1450:1443"
+      - "1450:1433"
     container_name: eventordersqlserver
     networks:
       - backend
@@ -92,11 +92,11 @@ services:
       ASPNETCORE_ENVIRONMENT: Development
       EventUrl: http://catalog
       CartUrl: http://cart
-      IdentityUrl: http://192.168.1.21:7800
+      IdentityUrl: http://10.0.0.24:7800
       CallBackUrl: http://localhost:7500
       OrderUrl: http://order
-      StripePublicKey: pk_test_51LfciWAHqbeMKUc20hlX4v5Sa2aZvPSYHfFBRNvdSWsUGoA1wWez8VvjQLI9UnDDur6eu3RFrzGbwRSeUSyExyHi00zWDwTFZl
-      StripePrivateKey: sk_test_51LfciWAHqbeMKUc24AbJFHwRIp9v2BZfxggFksciKvJo67uwQ1se43SVDQM4MGkYhzYKfQXL4nm1Bko18z9X9YeB00MMkr2S3h
+      StripePublicKey: pk_test_51LdFCNL1UoLau7ZHpceQOVwMFigrbvPkfobO74efps1fScCHT18Fv4Gp08fuHdoIo4jczfMcXmROXLgIAgw636je00t8DBAuoW
+      StripePrivateKey: sk_test_51LdFCNL1UoLau7ZH2f9A25rQv0qNAd1yKN2MxsD01M3gXk3zQ98ezULmBIBLd2UzGV50lIAFcJvMQPdtGZ44ltZr00TuzQPrsL
     ports:
       - "7500:80"
     networks:
@@ -131,8 +131,8 @@ services:
       context: .\CartAPI
       dockerfile: Dockerfile
     environment:
-      ASP.NETCORE_ENVIRONMENT: Development
-      IdentityUrl: http://192.168.1.21:7800
+      ASPNETCORE_ENVIRONMENT: Development
+      IdentityUrl: http://10.0.0.24:7800
       ConnectionString: basket.data
     ports:
       - "7010:80"
@@ -148,7 +148,7 @@ services:
   order:
     image: events/orderapi
     build:
-      context: .\Orderapi
+      context: .\OrderApi
       dockerfile: Dockerfile
     logging:
       driver: "json-file"
@@ -158,7 +158,7 @@ services:
       }
     environment:
       ASPNETCORE_ENVIRONMENT: Development
-      IdentityUrl: http://192.168.1.21:7800
+      IdentityUrl: http://10.0.0.24:7800
       ConnectionString: "Data Source=ordersqlserver;Initial Catalog=OrdersDb;User Id=sa;Password=ProductApi(!);Connect Timeout=30;"
     ports:
       - "7020:80"
@@ -171,6 +171,7 @@ services:
       - ordersqlserver
       - rabbitmq
      
+
       
       
 
